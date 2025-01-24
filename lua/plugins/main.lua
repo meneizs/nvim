@@ -103,5 +103,30 @@ return {
 			end, { desc = "Previous todo comment" })
 		end,
 	},
-}
+	{
+		"nvim-tree/nvim-tree.lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("nvim-tree").setup({
+			view = {
+				width = 30, -- Largura fixa de 30 colunas
+				side = "right", -- Posição (opcional: "left" ou "right")
+			},
+			renderer = {
+				highlight_opened_files = "all",
+				background = {
+					{ attr = "bg", highlight = "Normal" }
+				},
+			},
+		})
 
+		-- Transparência do fundo
+		vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+		vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+
+		-- Atalho para abrir/fechar (ex: <leader>e)
+		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
+		end,
+	},
+}
