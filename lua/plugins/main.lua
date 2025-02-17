@@ -1,20 +1,36 @@
 return {
 	-- Colorscheme definition.
 	{
-		"loctvl842/monokai-pro.nvim", -- Colorscheme git path
-		lazy = false, -- Load before running
+		"shaunsingh/nord.nvim",
+		lazy = false,
 		priority = 1000,
 		config = function()
-			require("monokai-pro").setup({
-				devicons = true,
-				filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
-				background_clear = { "toggleterm", "telescope", "notify" },
-			})
-			vim.cmd([[colorscheme monokai-pro]]) -- setting the colorscheme
-			-- Removendo o fundo para o grupo de destaque Normal
-			vim.api.nvim_set_hl(0, "Normal", { ctermbg = "none", bg = "none" })
-			-- Remover o fundo para a janela não-focada (opcional)
-			vim.api.nvim_set_hl(0, "NormalNC", { ctermbg = "none", bg = "none" })
+			vim.cmd([[colorscheme nord]])
+		end,
+	},
+	{
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = { "shaunsingh/nord.nvim" },
+		config = function()
+			require("bufferline").setup({
+				options = {
+					separator_style = "thin", -- Estilo do separador
+				},
+			highlights = {
+			-- Exemplo de highlights personalizados (opcional)
+				buffer_selected = {
+					fg = "#81A1C1", -- Cor do texto
+					bg = "#2E3440", -- Cor de fundo
+					bold = true,    -- Texto em negrito
+					italic = true,  -- Texto em itálico
+				},
+				buffer_visible = {
+					fg = "#81A1C1",
+					bg = "#3B4252",
+				},
+			},
+		})
 		end,
 	},
 
@@ -24,11 +40,9 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 		config = function()
-			require("lualine").setup({ options = { theme = "monokai-pro" } })
+			require("lualine").setup({ options = { theme = "nord" } })
 		end,
 	},
-
-	-- LSP-Config
 	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
@@ -114,9 +128,6 @@ return {
 			},
 			renderer = {
 				highlight_opened_files = "all",
-				background = {
-					{ attr = "bg", highlight = "Normal" }
-				},
 			},
 		})
 
