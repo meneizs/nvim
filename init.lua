@@ -1,5 +1,5 @@
 -- Simple configs
-vim.opt.clipboard = "unnamedplus"
+vim.o.clipboard = 'unnamedplus'
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.g.loaded_netrw = 1
@@ -38,3 +38,12 @@ vim.api.nvim_set_keymap('i', '<C-v>', '<Esc>"+pa', { noremap = true, silent = tr
 
 -- Abrir file explorer
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
+
+-- Alternar para o próximo buffer
+vim.api.nvim_set_keymap('n', '<leader>n', ':bn<CR>', { noremap = true, silent = true })
+
+-- Alternar para o buffer anterior
+vim.api.nvim_set_keymap('n', '<leader>p', ':bp<CR>', { noremap = true, silent = true })
+
+-- Fechar o buffer atual
+vim.api.nvim_set_keymap('n', '<leader>d', ':bd<CR>', { noremap = true, silent = true })
